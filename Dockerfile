@@ -1,6 +1,6 @@
 FROM debian:stretch
 
-RUN apt-get update -y -qq && apt-get install -y -qq python-pip wget unzip jq openssh-client
+RUN apt-get update -y -qq && apt-get install -y -qq python-pip wget unzip jq openssh-client shellcheck
 RUN wget https://releases.hashicorp.com/terraform/0.11.10/terraform_0.11.10_linux_amd64.zip && \
     unzip terraform_0.11.10_linux_amd64.zip && \
     mv terraform /usr/local/bin/terraform && \
@@ -13,3 +13,4 @@ RUN pip install ansible
 RUN wget https://github.com/segmentio/terraform-docs/releases/download/v0.5.0/terraform-docs-v0.5.0-linux-amd64 && \
     mv ./terraform-docs-v0.5.0-linux-amd64 /usr/local/bin/terraform-docs && \
     rm -rf terraform-docs-v0.5.0-linux-amd64
+RUN pip install flake8

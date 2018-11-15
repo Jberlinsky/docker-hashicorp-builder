@@ -12,5 +12,6 @@ RUN wget https://releases.hashicorp.com/packer/1.3.2/packer_1.3.2_linux_amd64.zi
 RUN pip install ansible
 RUN wget https://github.com/segmentio/terraform-docs/releases/download/v0.5.0/terraform-docs-v0.5.0-linux-amd64 && \
     mv ./terraform-docs-v0.5.0-linux-amd64 /usr/local/bin/terraform-docs && \
+    chmod +x /usr/local/bin/terraform-docs && \
     rm -rf terraform-docs-v0.5.0-linux-amd64
 RUN pip install flake8

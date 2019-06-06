@@ -15,3 +15,15 @@ RUN wget https://github.com/segmentio/terraform-docs/releases/download/v0.5.0/te
     chmod +x /usr/local/bin/terraform-docs && \
     rm -rf terraform-docs-v0.5.0-linux-amd64
 RUN pip install flake8
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl && \
+    chmod +x ./kubectl && \
+    mv ./kubectl /usr/local/bin/kubectl
+RUN wget https://dl.google.com/go/go1.12.2.linux-amd64.tar.gz && \
+    tar -xvf go1.12.2.linux-amd64.tar.gz && \
+    mv go /usr/local && \
+    rm -rf go1.12.2.linux-amd64.tar.gz
+RUN mkdir /usr/src/go
+ENV GOROOT=/usr/local/go
+ENV GOPATH /usr/src/go
+ENV PATH $GOPATH/bin:$GOROOT/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+RUN go get -u -v github.com/kubernetes-sigs/aws-iam-authenticator/cmd/aws-iam-authenticator
